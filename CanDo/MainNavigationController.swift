@@ -15,8 +15,9 @@ class MainNavigationController: UINavigationController {
     
     
     private func setNivagationBar(){
-        navigationBar.backgroundColor = .black
-        navigationBar.tintColor = .white
-        navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+//        navigationBar.backgroundColor = .black
+//        navigationBar.tintColor = .white
+//        navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+        navigationBar.barStyle = .black
     }
 }
