@@ -12,14 +12,17 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         setTabBar()
         
-        
         let todayTab = TodayViewController(title: "Today", bgColor: .black)
         todayTab.tabBarItem = UITabBarItem(title: "Today", image: UIImage(systemName: "house.circle"), selectedImage: UIImage(systemName: "house.circle.fill"))
+        let todayTabNC = MainNavigationController(rootViewController: todayTab)
         
+
         let calendarTab = CalendarViewController(title: "Calendar", bgColor: .black)
         calendarTab.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(systemName: "calendar.circle"), selectedImage: UIImage(systemName: "calendar.circle.fill"))
         
-        self.viewControllers = [todayTab, calendarTab]
+        let calendarTabNC = MainNavigationController(rootViewController: calendarTab)
+        
+        self.viewControllers = [todayTabNC, calendarTabNC]
     }
     
     private func setTabBar(){
