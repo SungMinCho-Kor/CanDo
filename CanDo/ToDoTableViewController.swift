@@ -49,22 +49,28 @@ class ToDoTableViewController: UIViewController {
 }
 
 extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    //각 섹션 cell 개수 설정
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoList.count
     }
     
+    //section 개수 설정
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
+    //cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        var cellContent = cell.defaultContentConfiguration()
-        cellContent.text = todoList[indexPath.row]
-        cellContent.image = UIImage(systemName: "checkmark.square")
-        cell.contentConfiguration = cellContent
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
+        cell.cellLabel.text = todoList[indexPath.row]
         return cell
+    }
+    
+    //cell이 선택되면 실행
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected : ", indexPath.row)
     }
     
     
