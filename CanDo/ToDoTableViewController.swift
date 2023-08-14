@@ -10,7 +10,9 @@ import UIKit
 class ToDoTableViewController: UIViewController {
     
     private var toDoTableView: UITableView!
-
+    let cellIdentifier = "myCell"
+    var todoList : [String] = ["집 청소", "공부하기", "샤워하기"]
+    
     convenience init(title: String, bgColor: UIColor) {
         self.init()
         self.title = title
@@ -21,7 +23,7 @@ class ToDoTableViewController: UIViewController {
         super.viewDidLoad()
         
         configureTableView()
-        setDelegate()
+        setAttribute()
         
     }
     
@@ -39,7 +41,8 @@ class ToDoTableViewController: UIViewController {
         toDoTableView.separatorColor = .darkGray
     }
     
-    private func setDelegate(){
+    private func setAttribute(){
+        self.toDoTableView.register(ToDoTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         self.toDoTableView.dataSource = self
         self.toDoTableView.delegate = self
     }
@@ -47,7 +50,7 @@ class ToDoTableViewController: UIViewController {
 
 extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return todoList.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,9 +58,10 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         var cellContent = cell.defaultContentConfiguration()
-        cellContent.text = "\(indexPath.row)"
+        cellContent.text = todoList[indexPath.row]
         cellContent.image = UIImage(systemName: "checkmark.square")
         cell.contentConfiguration = cellContent
         return cell
