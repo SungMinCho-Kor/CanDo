@@ -21,20 +21,48 @@ class ToDoTableViewController: UIViewController {
         super.viewDidLoad()
         
         configureTableView()
+        setDelegate()
+        
     }
     
     private func configureTableView() {
-           toDoTableView = UITableView()
-           toDoTableView.translatesAutoresizingMaskIntoConstraints = false
-           self.view.addSubview(toDoTableView)
-           toDoTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-           toDoTableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-           toDoTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-           toDoTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-           
-           toDoTableView.backgroundColor = .white
-           toDoTableView.tintColor = .blue
-           toDoTableView.separatorColor = .darkGray
-       }
+        toDoTableView = UITableView(frame: .zero, style: .insetGrouped)
+        toDoTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(toDoTableView)
+        toDoTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        toDoTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        toDoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        toDoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        
+        toDoTableView.backgroundColor = .white
+        toDoTableView.tintColor = .blue
+        toDoTableView.separatorColor = .darkGray
+    }
+    
+    private func setDelegate(){
+        self.toDoTableView.dataSource = self
+        self.toDoTableView.delegate = self
+    }
+}
+
+extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "myCell")
+        var cellContent = cell.defaultContentConfiguration()
+        cellContent.text = "\(indexPath.row)"
+        cellContent.image = UIImage(systemName: "checkmark.square")
+        cell.contentConfiguration = cellContent
+        return cell
+    }
+    
+    
 }
 
