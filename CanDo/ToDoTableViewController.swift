@@ -45,6 +45,8 @@ class ToDoTableViewController: UIViewController {
         self.toDoTableView.register(ToDoTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         self.toDoTableView.dataSource = self
         self.toDoTableView.delegate = self
+        
+        self.toDoTableView.allowsMultipleSelection = true
     }
 }
 
@@ -70,7 +72,8 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
     
     //cell이 선택되면 실행
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected : ", indexPath.row)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
+//        cell.isCheck.toggle()
     }
     
     
