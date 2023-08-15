@@ -39,6 +39,7 @@ class ToDoTableViewController: UIViewController {
         toDoTableView.backgroundColor = .white
         toDoTableView.tintColor = .blue
         toDoTableView.separatorColor = .darkGray
+        toDoTableView.separatorInset = .zero
         
     }
     
@@ -63,19 +64,31 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
         return 2
     }
     
+    //section header 설정
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UILabel()
+        if section == 0{
+            header.text = "MustDo"
+        }else{
+            header.text = "Did"
+        }
+        return header
+    }
+    
+    
     //cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
         cell.cellLabel.text = todoList[indexPath.row]
         cell.selectionStyle = .none
+//        cell.contentView.layer.borderWidth = 1
         return cell
     }
     
     //cell이 선택되면 실행
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
-//        cell.isCheck.toggle()
+        print("selected #\(todoList[indexPath.row])")
     }
     
     
