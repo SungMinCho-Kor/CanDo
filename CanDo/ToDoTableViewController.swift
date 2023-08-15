@@ -39,6 +39,7 @@ class ToDoTableViewController: UIViewController {
         toDoTableView.backgroundColor = .white
         toDoTableView.tintColor = .blue
         toDoTableView.separatorColor = .darkGray
+        
     }
     
     private func setAttribute(){
@@ -67,6 +68,7 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
         cell.cellLabel.text = todoList[indexPath.row]
+        cell.selectionStyle = .none
         return cell
     }
     

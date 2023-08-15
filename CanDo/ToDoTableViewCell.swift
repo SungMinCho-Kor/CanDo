@@ -9,7 +9,6 @@ import UIKit
 
 class ToDoTableViewCell: UITableViewCell {
     
-    
     var checkBoxButtonView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -38,6 +37,8 @@ class ToDoTableViewCell: UITableViewCell {
     }
     
     func setLayout(){
+        
+        
         self.contentView.addSubview(cellLabel)
         self.contentView.addSubview(checkBoxButtonView)
         
