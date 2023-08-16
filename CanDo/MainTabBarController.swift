@@ -60,7 +60,21 @@ class MainTabBarController: UITabBarController {
     
     @objc
     func btnTap(){
-        print("add Button Tap")
+        let alert = UIAlertController(title: "할 일 추가", message: .none, preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "할 일을 입력하세요."
+        }
+        let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
+            let text = alert.textFields?[0].text ?? ""
+            if !text.isEmpty{
+                self.todayTab.addToDoList(content: (text))
+            }
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
     
 }

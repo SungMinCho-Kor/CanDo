@@ -11,7 +11,7 @@ class ToDoTableViewController: UIViewController {
     
     private var toDoTableView: UITableView!
     let cellIdentifier = "myCell"
-    var todoList : [String] = ["집 청소", "공부하기", "샤워하기"]
+    var todoList : [String] = []
     
     convenience init(title: String, bgColor: UIColor) {
         self.init()
@@ -24,8 +24,13 @@ class ToDoTableViewController: UIViewController {
         
         configureTableView()
         setAttribute()
-        
     }
+    
+    func addToDoList(content : String){
+        todoList.append(content)
+        toDoTableView.reloadData()
+    }
+    
     
     private func configureTableView() {
         toDoTableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -68,9 +73,9 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
         if section == 0{
-            header.text = "MustDo"
+            header.text = "Have To"
         }else{
-            header.text = "Did"
+            header.text = "Options"
         }
         return header
     }

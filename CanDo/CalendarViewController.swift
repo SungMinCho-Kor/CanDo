@@ -17,7 +17,6 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("calendar view controller 실행")
         
     }
 
