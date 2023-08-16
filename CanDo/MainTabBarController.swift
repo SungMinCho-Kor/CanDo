@@ -13,14 +13,16 @@ class MainTabBarController: UITabBarController {
     let calendarTab = CalendarViewController(title: "Calendar", bgColor: .black)
     var todayTabNC = MainNavigationController()
     var calendarTabNC = MainNavigationController()
+    let addButton = UIButton()
    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTabBar()
         setTodayTabNC()
         setCalendarTabNC()
+        setAddButtonAttribute()
         
-        self.viewControllers = [todayTabNC, calendarTabNC]
+        setViewControllers([todayTabNC, calendarTabNC], animated: false)
     }
     
     private func setTodayTabNC(){
@@ -37,6 +39,28 @@ class MainTabBarController: UITabBarController {
         tabBar.backgroundColor = .darkGray
         tabBar.unselectedItemTintColor = .white
         tabBar.tintColor = .white
+    }
+    
+    private func setAddButtonAttribute(){
+        addButton.backgroundColor = .systemBlue
+        addButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        addButton.contentMode = .scaleAspectFit
+        addButton.layer.cornerRadius = 30
+        addButton.tintColor = .white
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(addButton)
+        addButton.centerXAnchor.constraint(equalTo:self.tabBar.safeAreaLayoutGuide.centerXAnchor).isActive = true
+        addButton.centerYAnchor.constraint(equalTo: self.tabBar.safeAreaLayoutGuide.centerYAnchor, constant: -15).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        addButton.addTarget(self, action: #selector(btnTap), for: .touchUpInside)
+    }
+    
+    @objc
+    func btnTap(){
+        print("add Button Tap")
     }
     
 }
