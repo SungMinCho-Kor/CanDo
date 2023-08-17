@@ -7,11 +7,13 @@
 
 import UIKit
 
-class ToDoTableViewController: UIViewController {
+class TodayViewController: UIViewController {
     
     private var toDoTableView: UITableView!
+    private var optionTableView: UITableView!
     let cellIdentifier = "myCell"
     var todoList : [String] = []
+    var optionList : [String] = []
     
     convenience init(title: String, bgColor: UIColor) {
         self.init()
@@ -31,9 +33,16 @@ class ToDoTableViewController: UIViewController {
         toDoTableView.reloadData()
     }
     
+    func addOptionList(content : String){
+        optionList.append(content)
+        toDoTableView.reloadData()
+    }
+    
     
     private func configureTableView() {
         toDoTableView = UITableView(frame: .zero, style: .insetGrouped)
+        
+        toDoTableView.layer.cornerRadius = 10
         toDoTableView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(toDoTableView)
         toDoTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -42,29 +51,32 @@ class ToDoTableViewController: UIViewController {
         toDoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
         toDoTableView.backgroundColor = .white
-        toDoTableView.tintColor = .blue
+        toDoTableView.tintColor = .black
         toDoTableView.separatorColor = .darkGray
         toDoTableView.separatorInset = .zero
         
     }
     
     private func setAttribute(){
-        self.toDoTableView.register(ToDoTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        self.toDoTableView.register(TableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         self.toDoTableView.dataSource = self
         self.toDoTableView.delegate = self
-        
         self.toDoTableView.allowsMultipleSelection = true
     }
 }
 
-extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
+extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
     
     //각 섹션 cell 개수 설정
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoList.count
+        if tableView == toDoTableView{
+            return todoList.count
+        } else {
+            return optionList.count
+        }
     }
     
-    //section 개수 설정
+    //section 수 설정
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -72,7 +84,7 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
     //section header 설정
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
-        if section == 0{
+        if tableView == toDoTableView{
             header.text = "Have To"
         }else{
             header.text = "Options"
@@ -80,14 +92,17 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
         return header
     }
     
-    
     //cell 설정
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ToDoTableViewCell
-        cell.cellLabel.text = todoList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
+        if tableView == toDoTableView{
+            cell.cellLabel.text = todoList[indexPath.row]
+        } else{
+            cell.cellLabel.text = optionList[indexPath.row]
+        }
         cell.selectionStyle = .none
-//        cell.contentView.layer.borderWidth = 1
+//        cell.contentView.layer.borderWidth = 1.2
         return cell
     }
     
@@ -111,11 +126,11 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
         }
+        
         alert.addAction(cancel)
         alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
     }
-    
     
 }
 

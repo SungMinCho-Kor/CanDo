@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ToDoTableViewCell: UITableViewCell {
+class TableViewCell: UITableViewCell {
     
     var checkBoxButton : UIButton = {
         let btn = UIButton()

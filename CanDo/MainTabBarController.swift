@@ -9,7 +9,7 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    let todayTab = ToDoTableViewController(title: "Today", bgColor: .black)
+    let todayTab = TodayViewController(title: "Today", bgColor: .black)
     let calendarTab = CalendarViewController(title: "Calendar", bgColor: .black)
     var todayTabNC = MainNavigationController()
     var calendarTabNC = MainNavigationController()
@@ -42,7 +42,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setAddButtonAttribute(){
-        addButton.backgroundColor = .systemBlue
+        addButton.backgroundColor = .black
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addButton.contentMode = .scaleAspectFit
         addButton.layer.cornerRadius = 30
@@ -60,21 +60,47 @@ class MainTabBarController: UITabBarController {
     
     @objc
     func btnTap(){
-        let alert = UIAlertController(title: "할 일 추가", message: .none, preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "할 일을 입력하세요."
-        }
-        let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
-            let text = alert.textFields?[0].text ?? ""
-            if !text.isEmpty{
-                self.todayTab.addToDoList(content: text)
+        let actionSheet = UIAlertController(title: "Have to? Or Option?", message: .none, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "HaveTo", style: .default, handler: { (ACTION:UIAlertAction) in
+            let alert = UIAlertController(title: "할 일 추가", message: .none, preferredStyle: .alert)
+            alert.addTextField { (textField) in
+                textField.placeholder = "할 일을 입력하세요."
             }
-        }
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
-        }
-        alert.addAction(cancel)
-        alert.addAction(ok)
-        self.present(alert, animated: true, completion: nil)
+            let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
+                let text = alert.textFields?[0].text ?? ""
+                if !text.isEmpty{
+                    self.todayTab.addToDoList(content: text)
+                }
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+            }
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Option", style: .default, handler: { (ACTION:UIAlertAction) in
+            let alert = UIAlertController(title: "할 일 추가", message: .none, preferredStyle: .alert)
+            alert.addTextField { (textField) in
+                textField.placeholder = "할 일을 입력하세요."
+            }
+            let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
+                let text = alert.textFields?[0].text ?? ""
+                if !text.isEmpty{
+                    self.todayTab.addOptionList(content: text)
+                }
+            }
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+            }
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        self.present(actionSheet, animated: true)
+        
     }
     
 }
