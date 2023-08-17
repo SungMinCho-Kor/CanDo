@@ -16,6 +16,7 @@
 		C01B32952A889C56005C4DA3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01B32942A889C56005C4DA3 /* CalendarViewController.swift */; };
 		C01B32972A88B173005C4DA3 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01B32962A88B173005C4DA3 /* MainNavigationController.swift */; };
 		C01C168E2A8A0D9D007E135F /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C168D2A8A0D9D007E135F /* ToDoTableViewCell.swift */; };
+		C01C16922A8E1060007E135F /* ToDoListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C16912A8E1060007E135F /* ToDoListData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C01B32942A889C56005C4DA3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C01B32962A88B173005C4DA3 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C01C168D2A8A0D9D007E135F /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
+		C01C16912A8E1060007E135F /* ToDoListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				C003A8B12A83B7410046909A /* Assets.xcassets */,
 				C003A8B32A83B7410046909A /* LaunchScreen.storyboard */,
 				C003A8B62A83B7410046909A /* Info.plist */,
+				C01C16912A8E1060007E135F /* ToDoListData.swift */,
 			);
 			path = CanDo;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01C168E2A8A0D9D007E135F /* ToDoTableViewCell.swift in Sources */,
+				C01C16922A8E1060007E135F /* ToDoListData.swift in Sources */,
 				C01B32952A889C56005C4DA3 /* CalendarViewController.swift in Sources */,
 				C003A8A92A83B7400046909A /* AppDelegate.swift in Sources */,
 				C01B32912A889091005C4DA3 /* MainTabBarController.swift in Sources */,

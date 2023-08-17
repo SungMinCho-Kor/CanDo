@@ -94,6 +94,26 @@ extension ToDoTableViewController: UITableViewDelegate, UITableViewDataSource{
     //cell이 선택되면 실행
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected #\(todoList[indexPath.row])")
+        
+        let alert = UIAlertController(title: "할 일 수정", message: .none, preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "할 일을 입력하세요."
+            textField.text = self.todoList[indexPath.row]
+        }
+        let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
+            let text = alert.textFields?[0].text ?? ""
+            if !text.isEmpty{
+                self.todoList[indexPath.row] = text
+            } else{
+                self.todoList.remove(at: indexPath.row)
+            }
+            self.toDoTableView.reloadData()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
+        }
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
     }
     
     

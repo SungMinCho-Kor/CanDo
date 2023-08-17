@@ -67,7 +67,7 @@ class MainTabBarController: UITabBarController {
         let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
             let text = alert.textFields?[0].text ?? ""
             if !text.isEmpty{
-                self.todayTab.addToDoList(content: (text))
+                self.todayTab.addToDoList(content: text)
             }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
