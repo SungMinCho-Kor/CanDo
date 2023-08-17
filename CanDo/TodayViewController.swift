@@ -9,8 +9,7 @@ import UIKit
 
 class TodayViewController: UIViewController {
     
-    private var toDoTableView: UITableView!
-    private var optionTableView: UITableView!
+    private var tableView: UITableView!
     let cellIdentifier = "myCell"
     var todoList : [String] = []
     var optionList : [String] = []
@@ -30,38 +29,38 @@ class TodayViewController: UIViewController {
     
     func addToDoList(content : String){
         todoList.append(content)
-        toDoTableView.reloadData()
+        tableView.reloadData()
     }
     
     func addOptionList(content : String){
         optionList.append(content)
-        toDoTableView.reloadData()
+        tableView.reloadData()
     }
     
     
     private func configureTableView() {
-        toDoTableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView = UITableView(frame: .zero, style: .insetGrouped)
         
-        toDoTableView.layer.cornerRadius = 10
-        toDoTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(toDoTableView)
-        toDoTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        toDoTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        toDoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        toDoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.layer.cornerRadius = 10
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(tableView)
+        tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         
-        toDoTableView.backgroundColor = .white
-        toDoTableView.tintColor = .black
-        toDoTableView.separatorColor = .darkGray
-        toDoTableView.separatorInset = .zero
+        tableView.backgroundColor = .white
+        tableView.tintColor = .black
+        tableView.separatorColor = .darkGray
+        tableView.separatorInset = .zero
         
     }
     
     private func setAttribute(){
-        self.toDoTableView.register(TableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        self.toDoTableView.dataSource = self
-        self.toDoTableView.delegate = self
-        self.toDoTableView.allowsMultipleSelection = true
+        self.tableView.register(TableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.allowsMultipleSelection = true
     }
 }
 
@@ -69,7 +68,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
     
     //각 섹션 cell 개수 설정
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView == toDoTableView{
+        if section == 0{
             return todoList.count
         } else {
             return optionList.count
@@ -84,7 +83,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
     //section header 설정
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
-        if tableView == toDoTableView{
+        if section == 0{
             header.text = "Have To"
         }else{
             header.text = "Options"
@@ -96,7 +95,7 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
-        if tableView == toDoTableView{
+        if indexPath.section == 0{
             cell.cellLabel.text = todoList[indexPath.row]
         } else{
             cell.cellLabel.text = optionList[indexPath.row]
@@ -108,27 +107,43 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
     
     //cell이 선택되면 실행
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected #\(todoList[indexPath.row])")
-        
         let alert = UIAlertController(title: "할 일 수정", message: .none, preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.placeholder = "할 일을 입력하세요."
-            textField.text = self.todoList[indexPath.row]
-        }
-        let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
-            let text = alert.textFields?[0].text ?? ""
-            if !text.isEmpty{
-                self.todoList[indexPath.row] = text
-            } else{
-                self.todoList.remove(at: indexPath.row)
+        if indexPath.section == 0{
+            alert.addTextField { (textField) in
+                textField.placeholder = "할 일을 입력하세요."
+                textField.text = self.todoList[indexPath.row]
             }
-            self.toDoTableView.reloadData()
+            let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
+                let text = alert.textFields?[0].text ?? ""
+                if !text.isEmpty{
+                    self.todoList[indexPath.row] = text
+                } else{
+                    self.todoList.remove(at: indexPath.row)
+                }
+                self.tableView.reloadData()
+            }
+            
+            alert.addAction(ok)
+        }else{
+            alert.addTextField { (textField) in
+                textField.placeholder = "할 일을 입력하세요."
+                textField.text = self.optionList[indexPath.row]
+            }
+            let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
+                let text = alert.textFields?[0].text ?? ""
+                if !text.isEmpty{
+                    self.optionList[indexPath.row] = text
+                } else{
+                    self.optionList.remove(at: indexPath.row)
+                }
+                self.tableView.reloadData()
+            }
+            
+            alert.addAction(ok)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
         }
-        
         alert.addAction(cancel)
-        alert.addAction(ok)
         self.present(alert, animated: true, completion: nil)
     }
     
