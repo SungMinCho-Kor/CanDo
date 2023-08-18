@@ -9,8 +9,8 @@ import UIKit
 
 class TodayViewController: UIViewController {
     
-    var haveToTableView: HaveToTableView!
-    var optionTableView: OptionTableView!
+    var haveToTableView: TableView!
+    var optionTableView: TableView!
     let cellIdentifier = "myCell"
     var todoList : [String] = []
     var optionList : [String] = []
@@ -29,14 +29,14 @@ class TodayViewController: UIViewController {
     
     
     private func configureTableView() {
-        haveToTableView = HaveToTableView(parentViewController: self)
+        haveToTableView = TableView(parentViewController: self,tableTitle: "HaveTo")
         haveToTableView.setAttribute()
         
         haveToTableView.layer.cornerRadius = 10
         haveToTableView.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(haveToTableView)
         haveToTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        haveToTableView.heightAnchor.constraint(equalToConstant: self.view.safeAreaLayoutGuide.layoutFrame.height * 0.3).isActive = true
+        haveToTableView.heightAnchor.constraint(equalToConstant: self.view.safeAreaLayoutGuide.layoutFrame.height * 0.4).isActive = true
         haveToTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
         haveToTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10).isActive = true
         
@@ -46,7 +46,7 @@ class TodayViewController: UIViewController {
         haveToTableView.layer.cornerRadius = 20
         
         
-        optionTableView = OptionTableView(parentViewController: self)
+        optionTableView = TableView(parentViewController: self,tableTitle: "Option")
         optionTableView.setAttribute()
         
         optionTableView.layer.cornerRadius = 10

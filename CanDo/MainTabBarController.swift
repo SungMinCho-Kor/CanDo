@@ -60,7 +60,7 @@ class MainTabBarController: UITabBarController {
     
     @objc
     func btnTap(){
-        let actionSheet = UIAlertController(title: "Have to? Or Option?", message: .none, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Have to? or Option?", message: .none, preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "HaveTo", style: .default, handler: { (ACTION:UIAlertAction) in
             let alert = UIAlertController(title: "할 일 추가", message: .none, preferredStyle: .alert)
@@ -70,7 +70,7 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    self.todayTab.haveToTableView.addHaveToList(content: text)
+                    self.todayTab.haveToTableView.list.append(text)
                     self.todayTab.haveToTableView.reloadData()
                 }
             }
@@ -89,7 +89,7 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    self.todayTab.optionTableView.addOptionList(content: text)
+                    self.todayTab.optionTableView.list.append(text)
                     self.todayTab.optionTableView.reloadData()
                 }
             }

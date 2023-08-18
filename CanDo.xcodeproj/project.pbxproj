@@ -17,8 +17,7 @@
 		C01B32972A88B173005C4DA3 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01B32962A88B173005C4DA3 /* MainNavigationController.swift */; };
 		C01C168E2A8A0D9D007E135F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C168D2A8A0D9D007E135F /* TableViewCell.swift */; };
 		C01C16922A8E1060007E135F /* ToDoListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C16912A8E1060007E135F /* ToDoListData.swift */; };
-		C0F7E5C42A8F9D220006F925 /* HaveToTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7E5C32A8F9D220006F925 /* HaveToTableView.swift */; };
-		C0F7E5C62A8FA6540006F925 /* OptionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7E5C52A8FA6540006F925 /* OptionTableView.swift */; };
+		C0F7E5C42A8F9D220006F925 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7E5C32A8F9D220006F925 /* TableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +33,7 @@
 		C01B32962A88B173005C4DA3 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C01C168D2A8A0D9D007E135F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		C01C16912A8E1060007E135F /* ToDoListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListData.swift; sourceTree = "<group>"; };
-		C0F7E5C32A8F9D220006F925 /* HaveToTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaveToTableView.swift; sourceTree = "<group>"; };
-		C0F7E5C52A8FA6540006F925 /* OptionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableView.swift; sourceTree = "<group>"; };
+		C0F7E5C32A8F9D220006F925 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +71,7 @@
 				C01B32902A889091005C4DA3 /* MainTabBarController.swift */,
 				C01B32962A88B173005C4DA3 /* MainNavigationController.swift */,
 				C01B32922A889C37005C4DA3 /* TodayViewController.swift */,
-				C0F7E5C52A8FA6540006F925 /* OptionTableView.swift */,
-				C0F7E5C32A8F9D220006F925 /* HaveToTableView.swift */,
+				C0F7E5C32A8F9D220006F925 /* TableView.swift */,
 				C01C168D2A8A0D9D007E135F /* TableViewCell.swift */,
 				C01B32942A889C56005C4DA3 /* CalendarViewController.swift */,
 				C003A8B12A83B7410046909A /* Assets.xcassets */,
@@ -155,13 +152,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0F7E5C62A8FA6540006F925 /* OptionTableView.swift in Sources */,
 				C01C168E2A8A0D9D007E135F /* TableViewCell.swift in Sources */,
 				C01C16922A8E1060007E135F /* ToDoListData.swift in Sources */,
 				C01B32952A889C56005C4DA3 /* CalendarViewController.swift in Sources */,
 				C003A8A92A83B7400046909A /* AppDelegate.swift in Sources */,
 				C01B32912A889091005C4DA3 /* MainTabBarController.swift in Sources */,
-				C0F7E5C42A8F9D220006F925 /* HaveToTableView.swift in Sources */,
+				C0F7E5C42A8F9D220006F925 /* TableView.swift in Sources */,
 				C01B32972A88B173005C4DA3 /* MainNavigationController.swift in Sources */,
 				C01B32932A889C37005C4DA3 /* TodayViewController.swift in Sources */,
 				C003A8AB2A83B7400046909A /* SceneDelegate.swift in Sources */,
