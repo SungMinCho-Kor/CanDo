@@ -43,15 +43,20 @@ class TableViewCell: UITableViewCell {
         cellLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         cellLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         cellLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        cellLabel.textColor = .white
         
         checkBoxButton.translatesAutoresizingMaskIntoConstraints = false
-        checkBoxButton.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        checkBoxButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 20).isActive = true
         checkBoxButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         checkBoxButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
         checkBoxButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         checkBoxButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         checkBoxButton.addTarget(self, action: #selector(checkBoxTap), for: .touchUpInside)
+        
+        self.contentView.layer.cornerRadius = 20
+        self.contentView.layer.borderWidth = 1
+        self.contentView.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
     @objc
@@ -66,6 +71,12 @@ class TableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         //cell 클릭시 실행
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
     }
     
 }

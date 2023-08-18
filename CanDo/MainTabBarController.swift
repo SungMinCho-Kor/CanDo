@@ -42,7 +42,7 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setAddButtonAttribute(){
-        addButton.backgroundColor = .black
+        addButton.backgroundColor = .systemBlue
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addButton.contentMode = .scaleAspectFit
         addButton.layer.cornerRadius = 30
@@ -70,7 +70,8 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    self.todayTab.addToDoList(content: text)
+                    self.todayTab.haveToTableView.addHaveToList(content: text)
+                    self.todayTab.haveToTableView.reloadData()
                 }
             }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
@@ -79,6 +80,7 @@ class MainTabBarController: UITabBarController {
             alert.addAction(ok)
             self.present(alert, animated: true, completion: nil)
         }))
+        
         actionSheet.addAction(UIAlertAction(title: "Option", style: .default, handler: { (ACTION:UIAlertAction) in
             let alert = UIAlertController(title: "할 일 추가", message: .none, preferredStyle: .alert)
             alert.addTextField { (textField) in
@@ -87,7 +89,8 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    self.todayTab.addOptionList(content: text)
+                    self.todayTab.optionTableView.addOptionList(content: text)
+                    self.todayTab.optionTableView.reloadData()
                 }
             }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
