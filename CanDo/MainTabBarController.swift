@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
     private func setCalendarTabNC(){
         calendarTab.tabBarItem = UITabBarItem(title: "Calendar", image: UIImage(systemName: "calendar.circle"), selectedImage: UIImage(systemName: "calendar.circle.fill"))
         calendarTabNC = MainNavigationController(rootViewController: calendarTab)
-    }
+    }   
     
     private func setTabBar(){
         tabBar.backgroundColor = .darkGray
@@ -42,14 +42,15 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setAddButtonAttribute(){
+        self.view.addSubview(addButton)
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        
         addButton.backgroundColor = .systemBlue
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addButton.contentMode = .scaleAspectFit
         addButton.layer.cornerRadius = 30
         addButton.tintColor = .white
         
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(addButton)
         addButton.centerXAnchor.constraint(equalTo:self.tabBar.safeAreaLayoutGuide.centerXAnchor).isActive = true
         addButton.centerYAnchor.constraint(equalTo: self.tabBar.safeAreaLayoutGuide.centerYAnchor, constant: -15).isActive = true
         addButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -71,7 +72,9 @@ class MainTabBarController: UITabBarController {
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
                     self.todayTab.haveToTableView.list.append(text)
-                    self.todayTab.haveToTableView.reloadData()
+                    self.todayTab.haveToTableView.beginUpdates()
+                    self.todayTab.haveToTableView.insertRows(at: [IndexPath(row: self.todayTab.haveToTableView.list.count - 1, section: 0)], with: .automatic)
+                    self.todayTab.haveToTableView.endUpdates()
                 }
             }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in
@@ -90,7 +93,9 @@ class MainTabBarController: UITabBarController {
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
                     self.todayTab.optionTableView.list.append(text)
-                    self.todayTab.optionTableView.reloadData()
+                    self.todayTab.optionTableView.beginUpdates()
+                    self.todayTab.optionTableView.insertRows(at: [IndexPath(row: self.todayTab.optionTableView.list.count - 1, section: 0)], with: .automatic)
+                    self.todayTab.optionTableView.endUpdates()
                 }
             }
             let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (cancel) in

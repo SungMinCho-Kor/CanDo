@@ -9,7 +9,7 @@ import UIKit
 
 class TableView:UITableView{
     let cellIdentifier = "myCell"
-    var list : [String] = []
+    var list : [String] = ["1","2","3","4","5","6","7"]
     let tableTitle : String
     
     weak var parentViewController : TodayViewController?
@@ -82,10 +82,11 @@ extension TableView: UITableViewDelegate, UITableViewDataSource{
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
                     self.list[indexPath.row] = text
+                    self.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
                 } else{
                     self.list.remove(at: indexPath.row)
+                    self.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
                 }
-                self.reloadData()
             }
             
             alert.addAction(ok)

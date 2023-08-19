@@ -30,13 +30,14 @@ class TodayViewController: UIViewController {
     
     private func configureTableView() {
         haveToTableView = TableView(parentViewController: self,tableTitle: "HaveTo")
+        self.view.addSubview(haveToTableView)
+        haveToTableView.translatesAutoresizingMaskIntoConstraints = false
         haveToTableView.setAttribute()
         
         haveToTableView.layer.cornerRadius = 10
-        haveToTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(haveToTableView)
         haveToTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        haveToTableView.heightAnchor.constraint(equalToConstant: self.view.safeAreaLayoutGuide.layoutFrame.height * 0.4).isActive = true
+//        haveToTableView.heightAnchor.constraint(equalToConstant: self.view.safeAreaLayoutGuide.layoutFrame.height * 0.4).isActive = true
+        haveToTableView.heightAnchor.constraint(equalToConstant: 350).isActive = true
         haveToTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
         haveToTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10).isActive = true
         
@@ -47,11 +48,11 @@ class TodayViewController: UIViewController {
         
         
         optionTableView = TableView(parentViewController: self,tableTitle: "Option")
+        self.view.addSubview(optionTableView)
+        optionTableView.translatesAutoresizingMaskIntoConstraints = false
         optionTableView.setAttribute()
         
         optionTableView.layer.cornerRadius = 10
-        optionTableView.translatesAutoresizingMaskIntoConstraints = false
-        self.view.addSubview(optionTableView)
         optionTableView.topAnchor.constraint(equalTo: haveToTableView.bottomAnchor, constant: 10).isActive = true
         optionTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         optionTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true

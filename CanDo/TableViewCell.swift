@@ -37,6 +37,7 @@ class TableViewCell: UITableViewCell {
     func setLayout(){
         self.contentView.addSubview(cellLabel)
         self.contentView.addSubview(checkBoxButton)
+        checkBoxButton.contentMode = .scaleAspectFit
         
         cellLabel.translatesAutoresizingMaskIntoConstraints = false
         cellLabel.leadingAnchor.constraint(equalTo: checkBoxButton.trailingAnchor, constant: 20).isActive = true
@@ -49,8 +50,7 @@ class TableViewCell: UITableViewCell {
         checkBoxButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 20).isActive = true
         checkBoxButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         checkBoxButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        checkBoxButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-        checkBoxButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        checkBoxButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
         
         checkBoxButton.addTarget(self, action: #selector(checkBoxTap), for: .touchUpInside)
         
@@ -62,10 +62,6 @@ class TableViewCell: UITableViewCell {
     @objc
     func checkBoxTap(){
         isCheck.toggle()
-    }
-    
-    func setText(content : String){
-        cellLabel.text = content
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -16,5 +16,6 @@ class MainNavigationController: UINavigationController {
     
     private func setNivagationBar(){
         navigationBar.barStyle = .black
+        navigationBar.backgroundColor = .black
     }
 }
