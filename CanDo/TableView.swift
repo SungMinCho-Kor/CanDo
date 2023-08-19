@@ -9,7 +9,7 @@ import UIKit
 
 class TableView:UITableView{
     let cellIdentifier = "myCell"
-    var list : [String] = ["1","2","3","4","5","6","7"]
+    var list : [ToDoElement] = []
     let tableTitle : String
     
     weak var parentViewController : TodayViewController?
@@ -44,9 +44,22 @@ extension TableView: UITableViewDelegate, UITableViewDataSource{
     
     //section header text 설정
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
         let header = UILabel()
+        headerView.addSubview(header)
+        header.translatesAutoresizingMaskIntoConstraints = false
+        header.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        header.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        header.textAlignment = .center
+        header.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
+        
+        
         header.text = self.tableTitle
-        return header
+        header.layer.borderWidth = 1
+        header.layer.borderColor = UIColor.systemGray6.cgColor
+        header.layer.cornerRadius = 10
+        header.layer.backgroundColor = UIColor.systemBlue.cgColor
+        return headerView
     }
     
     //section header height 설정
@@ -58,9 +71,12 @@ extension TableView: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
-        cell.cellLabel.text = list[indexPath.row]
+        cell.configure(element: list[indexPath.row])
+        cell.indexPath = indexPath
+        cell.delegate = self
+        
         cell.selectionStyle = .none
-        cell.contentView.backgroundColor = .systemGray6
+        cell.contentView.backgroundColor = .gray
         cell.backgroundColor = .black
         return cell
     }
@@ -76,12 +92,12 @@ extension TableView: UITableViewDelegate, UITableViewDataSource{
         if indexPath.section == 0{
             alert.addTextField { (textField) in
                 textField.placeholder = "할 일을 입력하세요."
-                textField.text = self.list[indexPath.row]
+                textField.text = self.list[indexPath.row].text
             }
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    self.list[indexPath.row] = text
+                    self.list[indexPath.row].text = text
                     self.reloadRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
                 } else{
                     self.list.remove(at: indexPath.row)
@@ -98,13 +114,17 @@ extension TableView: UITableViewDelegate, UITableViewDataSource{
     }
     
     //cell 오른쪽에서 드래그하면 삭제
-    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
             self.list.remove(at: indexPath.row)
             self.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .left)
         }
     }
-    
 }
 
+extension TableView:TableViewCellDelegate{
+    func tableViewCellCheckBoxDidTap(indexPath: IndexPath) {
+        list[indexPath.row].isCheck.toggle()
+        reloadRows(at: [indexPath], with: .automatic )
+    }
+}

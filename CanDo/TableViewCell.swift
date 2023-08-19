@@ -7,7 +7,21 @@
 
 import UIKit
 
+
+protocol TableViewCellDelegate: AnyObject{
+    func tableViewCellCheckBoxDidTap(indexPath : IndexPath)
+}
+
 class TableViewCell: UITableViewCell {
+    
+    weak var delegate: TableViewCellDelegate?
+    var indexPath: IndexPath?
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        indexPath = nil
+        delegate = nil
+    }
     
     var checkBoxButton : UIButton = {
         let btn = UIButton()
@@ -18,12 +32,6 @@ class TableViewCell: UITableViewCell {
     }()
     
     let cellLabel = UILabel()
-    var isCheck: Bool = false {
-        didSet {
-            let imageName = !isCheck ? "checkmark.square" : "checkmark.square.fill"
-            checkBoxButton.setImage(UIImage(systemName: imageName),for: .normal)
-        }
-    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,7 +69,8 @@ class TableViewCell: UITableViewCell {
     
     @objc
     func checkBoxTap(){
-        isCheck.toggle()
+        guard let indexPath else{ return }
+        self.delegate?.tableViewCellCheckBoxDidTap(indexPath: indexPath)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -75,4 +84,10 @@ class TableViewCell: UITableViewCell {
         self.contentView.frame = self.contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
     }
     
+    func configure(element: ToDoElement){
+        cellLabel.text = element.text
+        
+        let imageName = !element.isCheck ? "checkmark.square" : "checkmark.square.fill"
+        checkBoxButton.setImage(UIImage(systemName: imageName),for: .normal)
+    }
 }

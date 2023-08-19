@@ -15,7 +15,12 @@ class MainNavigationController: UINavigationController {
     
     
     private func setNivagationBar(){
-        navigationBar.barStyle = .black
-        navigationBar.backgroundColor = .black
+        let appearnace = UINavigationBarAppearance()
+        appearnace.backgroundColor = .black
+        appearnace.titleTextAttributes = [.foregroundColor : UIColor.white]
+//        navigationBar.barStyle = .black
+//        navigationBar.backgroundColor = .black
+        self.navigationBar.standardAppearance = appearnace
+        self.navigationBar.scrollEdgeAppearance = appearnace
     }
 }

@@ -16,7 +16,7 @@
 		C01B32952A889C56005C4DA3 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01B32942A889C56005C4DA3 /* CalendarViewController.swift */; };
 		C01B32972A88B173005C4DA3 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01B32962A88B173005C4DA3 /* MainNavigationController.swift */; };
 		C01C168E2A8A0D9D007E135F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C168D2A8A0D9D007E135F /* TableViewCell.swift */; };
-		C01C16922A8E1060007E135F /* ToDoListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C16912A8E1060007E135F /* ToDoListData.swift */; };
+		C01C16922A8E1060007E135F /* ToDoElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C16912A8E1060007E135F /* ToDoElement.swift */; };
 		C0F7E5C42A8F9D220006F925 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7E5C32A8F9D220006F925 /* TableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +32,7 @@
 		C01B32942A889C56005C4DA3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C01B32962A88B173005C4DA3 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C01C168D2A8A0D9D007E135F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		C01C16912A8E1060007E135F /* ToDoListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListData.swift; sourceTree = "<group>"; };
+		C01C16912A8E1060007E135F /* ToDoElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoElement.swift; sourceTree = "<group>"; };
 		C0F7E5C32A8F9D220006F925 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,10 +74,10 @@
 				C0F7E5C32A8F9D220006F925 /* TableView.swift */,
 				C01C168D2A8A0D9D007E135F /* TableViewCell.swift */,
 				C01B32942A889C56005C4DA3 /* CalendarViewController.swift */,
+				C01C16912A8E1060007E135F /* ToDoElement.swift */,
 				C003A8B12A83B7410046909A /* Assets.xcassets */,
 				C003A8B32A83B7410046909A /* LaunchScreen.storyboard */,
 				C003A8B62A83B7410046909A /* Info.plist */,
-				C01C16912A8E1060007E135F /* ToDoListData.swift */,
 			);
 			path = CanDo;
 			sourceTree = "<group>";
@@ -153,7 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C01C168E2A8A0D9D007E135F /* TableViewCell.swift in Sources */,
-				C01C16922A8E1060007E135F /* ToDoListData.swift in Sources */,
+				C01C16922A8E1060007E135F /* ToDoElement.swift in Sources */,
 				C01B32952A889C56005C4DA3 /* CalendarViewController.swift in Sources */,
 				C003A8A92A83B7400046909A /* AppDelegate.swift in Sources */,
 				C01B32912A889091005C4DA3 /* MainTabBarController.swift in Sources */,
@@ -308,7 +308,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -338,7 +338,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

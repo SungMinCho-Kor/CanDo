@@ -18,13 +18,3 @@ struct ToDoElement{
         self.haveTo = false
     }
 }
-
-class ToDoListData{
-    
-    var todoList : [ToDoElement] = []
-    
-    func add(content : String){
-        todoList.append(ToDoElement(text: content))
-    }
-    
-}

@@ -36,7 +36,12 @@ class MainTabBarController: UITabBarController {
     }   
     
     private func setTabBar(){
-        tabBar.backgroundColor = .darkGray
+        tabBar.backgroundColor = UIColor(red: 0.1, green: 0.100, blue: 0.150, alpha: 1)
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .darkGray
+        tabBar.standardAppearance = appearance
+        tabBar.scrollEdgeAppearance = appearance
         tabBar.unselectedItemTintColor = .white
         tabBar.tintColor = .white
     }
@@ -71,7 +76,8 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    self.todayTab.haveToTableView.list.append(text)
+                    let element = ToDoElement(text: text)
+                    self.todayTab.haveToTableView.list.append(element)
                     self.todayTab.haveToTableView.beginUpdates()
                     self.todayTab.haveToTableView.insertRows(at: [IndexPath(row: self.todayTab.haveToTableView.list.count - 1, section: 0)], with: .automatic)
                     self.todayTab.haveToTableView.endUpdates()
@@ -92,7 +98,8 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    self.todayTab.optionTableView.list.append(text)
+                    let element = ToDoElement(text: text)
+                    self.todayTab.optionTableView.list.append(element)
                     self.todayTab.optionTableView.beginUpdates()
                     self.todayTab.optionTableView.insertRows(at: [IndexPath(row: self.todayTab.optionTableView.list.count - 1, section: 0)], with: .automatic)
                     self.todayTab.optionTableView.endUpdates()
