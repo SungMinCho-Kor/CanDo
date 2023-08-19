@@ -25,8 +25,9 @@ class TableViewCell: UITableViewCell {
     
     var checkBoxButton : UIButton = {
         let btn = UIButton()
+        var image = UIImage(systemName: "checkmark.square")?.resized(to: CGSize(width: 25, height: 25)).withTintColor(.white)
         btn.backgroundColor = .clear
-        btn.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        btn.setImage(image, for: .normal)
         btn.contentMode = .scaleAspectFit
         return btn
     }()
@@ -56,8 +57,8 @@ class TableViewCell: UITableViewCell {
         
         checkBoxButton.translatesAutoresizingMaskIntoConstraints = false
         checkBoxButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 20).isActive = true
-        checkBoxButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        checkBoxButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        checkBoxButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        checkBoxButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
         checkBoxButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
         
         checkBoxButton.addTarget(self, action: #selector(checkBoxTap), for: .touchUpInside)
@@ -88,6 +89,15 @@ class TableViewCell: UITableViewCell {
         cellLabel.text = element.text
         
         let imageName = !element.isCheck ? "checkmark.square" : "checkmark.square.fill"
-        checkBoxButton.setImage(UIImage(systemName: imageName),for: .normal)
+        checkBoxButton.setImage(UIImage(systemName: imageName)?.resized(to: CGSize(width: 25, height: 25)).withTintColor(.white),for: .normal)
+    }
+}
+
+
+extension UIImage {
+    func resized(to size: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size: size).image { _ in
+            draw(in: CGRect(origin: .zero, size: size))
+        }
     }
 }
