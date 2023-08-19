@@ -97,5 +97,14 @@ extension TableView: UITableViewDelegate, UITableViewDataSource{
         parentViewController!.present(alert, animated: true)
     }
     
+    //cell 오른쪽에서 드래그하면 삭제
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            self.list.remove(at: indexPath.row)
+            self.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .left)
+        }
+    }
+    
 }
 
