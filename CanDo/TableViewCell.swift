@@ -8,9 +8,6 @@
 import UIKit
 
 
-protocol TableViewCellDelegate: AnyObject{
-    func tableViewCellCheckBoxDidTap(indexPath : IndexPath)
-}
 
 class TableViewCell: UITableViewCell {
     

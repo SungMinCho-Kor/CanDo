@@ -126,7 +126,11 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
             cell.configure(element: optionTableView.list[indexPath.row])
         }
         cell.indexPath = indexPath
-        cell.delegate = self
+        if tableView == haveToTableView{
+            cell.delegate = haveToTableView
+        } else{
+            cell.delegate = optionTableView
+        }
         
         cell.selectionStyle = .none
         cell.contentView.backgroundColor = .gray
@@ -187,21 +191,5 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
             
             tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .left)
         }
-    }
-}
-
-
-extension TodayViewController:TableViewCellDelegate{
-    func tableViewCellCheckBoxDidTap(indexPath: IndexPath) {
-        
-    }
-    
-    func tableViewCellCheckBoxDidTap(tableView: UITableView, indexPath: IndexPath) {
-        if tableView == haveToTableView{
-            haveToTableView.list[indexPath.row].isCheck.toggle()
-        } else{
-            optionTableView.list[indexPath.row].isCheck.toggle()
-        }
-        tableView.reloadRows(at: [indexPath], with: .automatic )
     }
 }

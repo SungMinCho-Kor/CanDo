@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol TableViewCellDelegate: AnyObject{
+    func tableViewCellCheckBoxDidTap(indexPath : IndexPath)
+}
 class TableView:UITableView{
     let cellIdentifier = "myCell"
     var list : [ToDoElement] = []
@@ -21,5 +24,12 @@ class TableView:UITableView{
     required init?(coder: NSCoder) {
         self.tableTitle = ""
         super.init(coder: coder)
+    }
+}
+
+extension TableView:TableViewCellDelegate{
+    func tableViewCellCheckBoxDidTap(indexPath: IndexPath) {
+        self.list[indexPath.row].isCheck.toggle()
+        self.reloadRows(at: [indexPath], with: .automatic)
     }
 }
