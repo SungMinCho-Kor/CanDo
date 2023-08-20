@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 class TodayViewController: UIViewController {
     
@@ -23,9 +24,54 @@ class TodayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTableView()
+        
     }
+    
+    //CoreData 쓰기
+    func saveCoreData(text: String, isCheck: Bool, isHaveTo: Bool) -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "DayList", in: managedContext)!
+        let object = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        object.setValue(text, forKey: "text")
+        object.setValue(isCheck, forKey: "isCheck")
+        object.setValue(isHaveTo, forKey: "isHaveTo")
+        
+        do {
+            try managedContext.save()
+            return true
+        } catch let error as NSError{
+            print("Save Fail. \(error) \(error.userInfo)")
+            return false
+        }
+    }
+    
+    func readCoreData() throws -> [NSManagedObject]? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        // Entity의 fetchRequest 생성
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DayList")
+        
+        // 정렬 또는 조건 설정
+        //    let sort = NSSortDescriptor(key: "createDate", ascending: false)
+        //    fetchRequest.sortDescriptors = [sort]
+        //    fetchRequest.predicate = NSPredicate(format: "isFinished = %@", NSNumber(value: isFinished))
+        
+        do {
+            // fetchRequest를 통해 managedContext로부터 결과 배열을 가져오기
+            let resultCDArray = try managedContext.fetch(fetchRequest)
+            return resultCDArray
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            throw error
+        }
+    }
+    
+    
     
     func setAttribute(){
         haveToTableView.register(TableViewCell.self, forCellReuseIdentifier: cellIdentifier)
@@ -115,15 +161,12 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
-        if tableView == haveToTableView{
-            cell.configure(element: haveToTableView.list[indexPath.row])
-        } else{
-            cell.configure(element: optionTableView.list[indexPath.row])
-        }
         cell.indexPath = indexPath
         if tableView == haveToTableView{
+            cell.configure(element: haveToTableView.list[indexPath.row])
             cell.delegate = haveToTableView
         } else{
+            cell.configure(element: optionTableView.list[indexPath.row])
             cell.delegate = optionTableView
         }
         

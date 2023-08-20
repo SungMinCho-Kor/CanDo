@@ -18,6 +18,9 @@
 		C01C168E2A8A0D9D007E135F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C168D2A8A0D9D007E135F /* TableViewCell.swift */; };
 		C01C16922A8E1060007E135F /* ToDoElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01C16912A8E1060007E135F /* ToDoElement.swift */; };
 		C093BAEC2A91D32B009D04BB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C093BAEB2A91D32B009D04BB /* SnapKit */; };
+		C093BAEF2A927299009D04BB /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C093BAED2A927299009D04BB /* CoreData.xcdatamodeld */; };
+		C093BAF22A9275FB009D04BB /* DayList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C093BAF02A9275FB009D04BB /* DayList+CoreDataClass.swift */; };
+		C093BAF32A9275FB009D04BB /* DayList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C093BAF12A9275FB009D04BB /* DayList+CoreDataProperties.swift */; };
 		C0F7E5C42A8F9D220006F925 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7E5C32A8F9D220006F925 /* TableView.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +37,9 @@
 		C01B32962A88B173005C4DA3 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		C01C168D2A8A0D9D007E135F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		C01C16912A8E1060007E135F /* ToDoElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoElement.swift; sourceTree = "<group>"; };
+		C093BAEE2A927299009D04BB /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		C093BAF02A9275FB009D04BB /* DayList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayList+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C093BAF12A9275FB009D04BB /* DayList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C0F7E5C32A8F9D220006F925 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +58,8 @@
 		C003A89C2A83B7400046909A = {
 			isa = PBXGroup;
 			children = (
+				C093BAF02A9275FB009D04BB /* DayList+CoreDataClass.swift */,
+				C093BAF12A9275FB009D04BB /* DayList+CoreDataProperties.swift */,
 				C003A8A72A83B7400046909A /* CanDo */,
 				C003A8A62A83B7400046909A /* Products */,
 			);
@@ -74,6 +82,7 @@
 				C01B32962A88B173005C4DA3 /* MainNavigationController.swift */,
 				C01B32922A889C37005C4DA3 /* TodayViewController.swift */,
 				C0F7E5C32A8F9D220006F925 /* TableView.swift */,
+				C093BAED2A927299009D04BB /* CoreData.xcdatamodeld */,
 				C01C168D2A8A0D9D007E135F /* TableViewCell.swift */,
 				C01B32942A889C56005C4DA3 /* CalendarViewController.swift */,
 				C01C16912A8E1060007E135F /* ToDoElement.swift */,
@@ -162,10 +171,13 @@
 			files = (
 				C01C168E2A8A0D9D007E135F /* TableViewCell.swift in Sources */,
 				C01C16922A8E1060007E135F /* ToDoElement.swift in Sources */,
+				C093BAEF2A927299009D04BB /* CoreData.xcdatamodeld in Sources */,
 				C01B32952A889C56005C4DA3 /* CalendarViewController.swift in Sources */,
 				C003A8A92A83B7400046909A /* AppDelegate.swift in Sources */,
 				C01B32912A889091005C4DA3 /* MainTabBarController.swift in Sources */,
+				C093BAF22A9275FB009D04BB /* DayList+CoreDataClass.swift in Sources */,
 				C0F7E5C42A8F9D220006F925 /* TableView.swift in Sources */,
+				C093BAF32A9275FB009D04BB /* DayList+CoreDataProperties.swift in Sources */,
 				C01B32972A88B173005C4DA3 /* MainNavigationController.swift in Sources */,
 				C01B32932A889C37005C4DA3 /* TodayViewController.swift in Sources */,
 				C003A8AB2A83B7400046909A /* SceneDelegate.swift in Sources */,
@@ -401,6 +413,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		C093BAED2A927299009D04BB /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C093BAEE2A927299009D04BB /* CoreData.xcdatamodel */,
+			);
+			currentVersion = C093BAEE2A927299009D04BB /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C003A89D2A83B7400046909A /* Project object */;
 }

@@ -10,11 +10,11 @@ import Foundation
 struct ToDoElement{
     var text : String
     var isCheck : Bool
-    var haveTo : Bool
+    var isHaveTo : Bool
     
-    init(text: String) {
+    init(text: String, isHaveTo: Bool) {
         self.text = text
         self.isCheck = false
-        self.haveTo = false
+        self.isHaveTo = isHaveTo
     }
 }

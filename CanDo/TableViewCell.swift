@@ -12,6 +12,7 @@ class TableViewCell: UITableViewCell {
     
     weak var delegate: TableViewCellDelegate?
     var indexPath: IndexPath?
+    let cellLabel = UILabel()
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -27,8 +28,6 @@ class TableViewCell: UITableViewCell {
         btn.contentMode = .scaleAspectFit
         return btn
     }()
-    
-    let cellLabel = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -76,7 +76,7 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    let element = ToDoElement(text: text)
+                    let element = ToDoElement(text: text,isHaveTo: true)
                     self.todayTab.haveToTableView.list.append(element)
                     self.todayTab.haveToTableView.beginUpdates()
                     self.todayTab.haveToTableView.insertRows(at: [IndexPath(row: self.todayTab.haveToTableView.list.count - 1, section: 0)], with: .automatic)
@@ -98,7 +98,7 @@ class MainTabBarController: UITabBarController {
             let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
                 let text = alert.textFields?[0].text ?? ""
                 if !text.isEmpty{
-                    let element = ToDoElement(text: text)
+                    let element = ToDoElement(text: text,isHaveTo: false)
                     self.todayTab.optionTableView.list.append(element)
                     self.todayTab.optionTableView.beginUpdates()
                     self.todayTab.optionTableView.insertRows(at: [IndexPath(row: self.todayTab.optionTableView.list.count - 1, section: 0)], with: .automatic)
