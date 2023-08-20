@@ -85,12 +85,13 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
         let headerView = UIView()
         let header = UILabel()
         headerView.addSubview(header)
-        header.translatesAutoresizingMaskIntoConstraints = false
-        header.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        header.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        header.textAlignment = .center
-        header.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
+        header.snp.makeConstraints { make in
+            make.height.equalTo(30)
+            make.width.equalTo(70)
+            make.centerY.equalTo(headerView.snp.centerY)
+        }
         
+        header.textAlignment = .center
         header.layer.borderWidth = 1
         header.layer.borderColor = UIColor.systemGray6.cgColor
         header.layer.cornerRadius = 10

@@ -8,7 +8,6 @@
 import UIKit
 
 
-
 class TableViewCell: UITableViewCell {
     
     weak var delegate: TableViewCellDelegate?
@@ -45,18 +44,15 @@ class TableViewCell: UITableViewCell {
         self.contentView.addSubview(checkBoxButton)
         checkBoxButton.contentMode = .scaleAspectFit
         
-        cellLabel.translatesAutoresizingMaskIntoConstraints = false
-        cellLabel.leadingAnchor.constraint(equalTo: checkBoxButton.trailingAnchor, constant: 20).isActive = true
-        cellLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        cellLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        cellLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        cellLabel.textColor = .white
-        
-        checkBoxButton.translatesAutoresizingMaskIntoConstraints = false
-        checkBoxButton.leadingAnchor.constraint(equalTo: self.leadingAnchor,constant: 20).isActive = true
-        checkBoxButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        checkBoxButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        checkBoxButton.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        cellLabel.snp.makeConstraints { make in
+            make.leading.equalTo(checkBoxButton.snp.trailing).offset(10)
+            make.trailing.top.bottom.equalToSuperview()
+        }
+        checkBoxButton.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(10)
+            make.height.width.equalTo(25)
+            make.centerY.equalToSuperview()
+        }
         
         checkBoxButton.addTarget(self, action: #selector(checkBoxTap), for: .touchUpInside)
         
