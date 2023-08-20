@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class TodayViewController: UIViewController {
     
@@ -28,51 +29,43 @@ class TodayViewController: UIViewController {
     
     func setAttribute(){
         haveToTableView.register(TableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        optionTableView.register(TableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         haveToTableView.dataSource = self
         haveToTableView.delegate = self
         haveToTableView.allowsMultipleSelection = true
+        
+        optionTableView.register(TableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         optionTableView.dataSource = self
         optionTableView.delegate = self
         optionTableView.allowsMultipleSelection = true
     }
     
-    
     private func configureTableView() {
         haveToTableView = TableView(tableTitle: "HaveTo")
+        optionTableView = TableView(tableTitle: "Option")
         self.view.addSubview(haveToTableView)
-        haveToTableView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(optionTableView)
         
-        haveToTableView.layer.cornerRadius = 10
-        haveToTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-//        haveToTableView.heightAnchor.constraint(equalToConstant: self.view.safeAreaLayoutGuide.layoutFrame.height * 0.4).isActive = true
-        haveToTableView.heightAnchor.constraint(equalToConstant: 350).isActive = true
-        haveToTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
-        haveToTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10).isActive = true
-        
+        haveToTableView.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+            make.height.equalTo(view).multipliedBy(0.5)
+        }
         haveToTableView.backgroundColor = .black
         haveToTableView.tintColor = .white
         haveToTableView.separatorColor = .clear
         haveToTableView.layer.cornerRadius = 20
         
-        
-        optionTableView = TableView(tableTitle: "Option")
-        self.view.addSubview(optionTableView)
-        optionTableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        optionTableView.layer.cornerRadius = 10
-        optionTableView.topAnchor.constraint(equalTo: haveToTableView.bottomAnchor, constant: 10).isActive = true
-        optionTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        optionTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10).isActive = true
-        optionTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10).isActive = true
-        
+        optionTableView.snp.makeConstraints { make in
+            make.top.equalTo(haveToTableView.snp.bottom)
+            make.leading.bottom.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
         optionTableView.backgroundColor = .black
         optionTableView.tintColor = .white
         optionTableView.separatorColor = .clear
         optionTableView.layer.cornerRadius = 20
         
     }
-    
 }
 
 
@@ -98,16 +91,17 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
         header.textAlignment = .center
         header.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
         
-        
         header.layer.borderWidth = 1
         header.layer.borderColor = UIColor.systemGray6.cgColor
         header.layer.cornerRadius = 10
         header.layer.backgroundColor = UIColor.systemBlue.cgColor
+        
         if tableView == haveToTableView{
             header.text = haveToTableView.tableTitle
         } else{
             header.text = optionTableView.tableTitle
         }
+        
         return headerView
     }
     

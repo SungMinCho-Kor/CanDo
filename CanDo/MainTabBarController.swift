@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MainTabBarController: UITabBarController {
     
@@ -48,19 +49,18 @@ class MainTabBarController: UITabBarController {
     
     private func setAddButtonAttribute(){
         self.view.addSubview(addButton)
-        addButton.translatesAutoresizingMaskIntoConstraints = false
         
         addButton.backgroundColor = .systemBlue
         addButton.setImage(UIImage(systemName: "plus"), for: .normal)
         addButton.contentMode = .scaleAspectFit
-        addButton.layer.cornerRadius = 30
+        addButton.layer.cornerRadius = 35
         addButton.tintColor = .white
         
-        addButton.centerXAnchor.constraint(equalTo:self.tabBar.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        addButton.centerYAnchor.constraint(equalTo: self.tabBar.safeAreaLayoutGuide.centerYAnchor, constant: -15).isActive = true
-        addButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        addButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        
+        addButton.snp.makeConstraints { make in
+            make.centerX.equalTo(self.tabBar)
+            make.centerY.equalTo(self.tabBar).offset(-35)
+            make.height.width.equalTo(70)
+        }
         addButton.addTarget(self, action: #selector(btnTap), for: .touchUpInside)
     }
     
