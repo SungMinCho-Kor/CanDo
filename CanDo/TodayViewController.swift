@@ -139,9 +139,9 @@ extension TodayViewController: UITableViewDelegate, UITableViewDataSource{
         
         header.textAlignment = .center
         header.layer.borderWidth = 1
-        header.layer.borderColor = UIColor.systemGray6.cgColor
+        header.layer.borderColor = UIColor.darkGray.cgColor
         header.layer.cornerRadius = 10
-        header.layer.backgroundColor = UIColor.systemBlue.cgColor
+        header.layer.backgroundColor = UIColor.darkGray.cgColor
         
         if tableView == haveToTableView{
             header.text = haveToTableView.tableTitle
